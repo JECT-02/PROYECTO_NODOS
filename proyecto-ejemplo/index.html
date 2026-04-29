@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameDev Academy 3D - Aprende a crear videojuegos con IA</title>
+    <meta name="description"
+        content="Aplicacion educativa multimodal con 10 tutores IA especializados en desarrollo de videojuegos.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header">
+        <div id="brand">
+            <h1>AI Academy <span class="accent">3D</span></h1>
+        </div>
+        <div id="controls">
+            <button id="btn-connections" class="control-btn">Conexiones</button>
+            <button id="btn-reset" class="control-btn">Reset</button>
+            <button id="btn-learning-path" class="control-btn">Ruta</button>
+            <select id="filter-category">
+                <option value="all">Todas las areas</option>
+                <option value="programacion">Programacion</option>
+                <option value="fisica">Fisica</option>
+                <option value="arte_visual">Arte Visual</option>
+                <option value="audio">Audio</option>
+                <option value="diseño">Diseno</option>
+                <option value="narrativa">Narrativa</option>
+            </select>
+            <input type="text" id="search-node" placeholder="Buscar tutor...">
+        </div>
+    </div>
+
+    <!-- Panel informativo del tutor -->
+    <div id="info-panel" class="hidden">
+        <button id="info-close">&times;</button>
+        <h3 id="info-title"></h3>
+        <p id="info-role" class="info-role"></p>
+        <p id="info-summary"></p>
+        <div id="info-category" class="info-badge"></div>
+        <div id="info-haptic" class="info-haptic">
+            <span class="haptic-icon">~</span>
+            <span id="info-haptic-text"></span>
+        </div>
+        <div id="info-topics" class="info-topics"></div>
+        <button id="btn-chat" class="chat-btn">Conversar con este tutor</button>
+    </div>
+
+    <!-- Panel de chat -->
+    <div id="chat-panel" class="hidden">
+        <div id="chat-header">
+            <div class="chat-avatar-wrap">
+                <span id="chat-avatar-emoji" class="chat-emoji-avatar"></span>
+            </div>
+            <div class="chat-header-info">
+                <h3 id="chat-name"></h3>
+                <span id="chat-status">En linea</span>
+            </div>
+            <button id="btn-haptic" class="haptic-btn" title="Sentir patron haptico">~</button>
+            <button id="chat-close">&times;</button>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Escribe tu pregunta...">
+            <button id="chat-send">Enviar</button>
+        </div>
+    </div>
+
+    <!-- Modal API Key -->
+    <div id="api-key-modal" class="modal">
+        <div class="modal-content">
+            <h3>Bienvenido a GameDev Academy 3D</h3>
+            <p>Para conversar con los tutores IA, necesitas una API key de Google AI Studio (Gemini).</p>
+            <p>Obten una gratis en: <a href="https://aistudio.google.com/app/apikey"
+                    target="_blank">aistudio.google.com/app/apikey</a></p>
+            <input type="password" id="api-key-input" placeholder="Ingresa tu API key de Gemini">
+            <div class="modal-buttons">
+                <button id="btn-save-key">Comenzar</button>
+                <button id="btn-skip-key" class="secondary">Solo explorar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel de Ruta de Aprendizaje -->
+    <div id="learning-path-panel" class="hidden">
+        <button id="learning-path-close">&times;</button>
+        <h3>Ruta de Aprendizaje</h3>
+        <p class="lp-subtitle">Sigue este orden para crear tu primer videojuego</p>
+        <div id="learning-path-list"></div>
+    </div>
+
+    <!-- Leyenda de categorias -->
+    <div id="legend">
+        <h4>Areas de Desarrollo</h4>
+        <div class="legend-item"><span class="dot" style="background:#00e5ff"></span> Programacion</div>
+        <div class="legend-item"><span class="dot" style="background:#ff6e40"></span> Fisica</div>
+        <div class="legend-item"><span class="dot" style="background:#ea80fc"></span> Arte Visual</div>
+        <div class="legend-item"><span class="dot" style="background:#76ff03"></span> Audio</div>
+        <div class="legend-item"><span class="dot" style="background:#ffd740"></span> Diseno</div>
+        <div class="legend-item"><span class="dot" style="background:#ff4081"></span> Narrativa</div>
+    </div>
+
+    <!-- Canvas 3D -->
+    <div id="canvas-container"></div>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="hidden"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
