@@ -473,11 +473,7 @@ class GameDevAcademyApp {
             if (e.key === 'Enter') this.sendChatMessage();
         });
 
-        document.getElementById('btn-haptic').addEventListener('click', () => {
-            if (this.currentTutor?.hapticPattern?.pattern) {
-                this.triggerHaptic(this.currentTutor.hapticPattern.pattern);
-            }
-        });
+
     }
 
     filterByCategory(category) {
