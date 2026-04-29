@@ -9,12 +9,10 @@ import { tutorData } from './data.js';
 const CONFIG = {
     camera: { fov: 60, near: 0.1, far: 1000, initialPos: [0, 25, 70] },
     colors: {
-        programacion: 0x00e5ff,
-        fisica: 0xff6e40,
-        arte_visual: 0xea80fc,
-        audio: 0x76ff03,
-        'diseño': 0xffd740,
-        narrativa: 0xff4081,
+        matematicas: 0x00e5ff,
+        historia: 0xff6e40,
+        ciencias: 0xea80fc,
+        lenguaje: 0x76ff03,
         default: 0xffffff,
         connection: 0x667eea,
         background: 0x080c1a
@@ -174,7 +172,7 @@ class GameDevAcademyApp {
     tutorToPosition(orden, categoria) {
         const angle = ((orden - 1) / 10) * Math.PI * 2 - Math.PI / 2;
         const radius = 25;
-        const catOffsets = { programacion: 0, fisica: 3, arte_visual: -3, audio: 6, 'diseño': -6, narrativa: 9 };
+        const catOffsets = { matematicas: 0, historia: 4, ciencias: -4, lenguaje: 8 };
         const yOffset = catOffsets[categoria] || 0;
         return new THREE.Vector3(radius * Math.cos(angle), yOffset, radius * Math.sin(angle));
     }
@@ -568,7 +566,7 @@ class GameDevAcademyApp {
 
         this.addMessage('loading', 'Preparando al tutor...');
         this.llm.chatOneShot(
-            "Presentate brevemente (maximo 2 oraciones) como tutor de GameDev Academy y propone un mini-ejercicio introductorio de tu area.",
+            "Presentate brevemente (maximo 2 oraciones) como tutor de esta materia y propone un mini-ejercicio introductorio.",
             tutorInfo.prompt_personaje, 0.7
         ).then(response => {
             this.removeLoading();
