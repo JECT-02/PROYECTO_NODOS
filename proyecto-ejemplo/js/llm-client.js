@@ -153,12 +153,12 @@ export class LLMClient {
      * @returns {Promise<string>} Ejercicio generado
      */
     async generateExercise(tutorPrompt, topic, difficulty = 'basico') {
-        const exercisePrompt = `Genera UN ejercicio práctico de nivel ${difficulty} sobre "${topic}" para un estudiante de desarrollo de videojuegos. 
+        const exercisePrompt = `Genera UN ejercicio práctico de nivel ${difficulty} sobre "${topic}" para un estudiante. 
 El ejercicio debe:
 1. Tener un enunciado claro y corto (máximo 3 oraciones)
 2. Incluir una pista si es necesario
 3. Ser resolvible en 5 minutos o menos
-Formato: usa emojis para hacerlo visual y atractivo.`;
+Formato: Usa listas numéricas si es necesario, pero NO uses emojis.`;
 
         return this.chatOneShot(exercisePrompt, tutorPrompt, 0.8);
     }

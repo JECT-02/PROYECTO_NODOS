@@ -381,12 +381,9 @@ class GameDevAcademyApp {
 
         const catEl = document.getElementById('info-category');
         const colorHex = '#' + this.getCategoryColor(d.categoria).toString(16).padStart(6, '0');
-        catEl.textContent = d.categoria.replace('_', ' ').toUpperCase();
+        catEl.textContent = d.categoria.toUpperCase();
         catEl.style.background = colorHex + '22';
         catEl.style.color = colorHex;
-
-        const hapticEl = document.getElementById('info-haptic-text');
-        hapticEl.textContent = d.hapticPattern?.description || '';
 
         const topicsEl = document.getElementById('info-topics');
         topicsEl.innerHTML = '';
@@ -404,6 +401,7 @@ class GameDevAcademyApp {
         chatBtn.onclick = () => this.openChat(d);
 
         this.focusCameraOnNode(node);
+        this.openChat(d);
     }
 
     deselectNode() {
@@ -570,7 +568,7 @@ class GameDevAcademyApp {
             tutorInfo.prompt_personaje, 0.7
         ).then(response => {
             this.removeLoading();
-            this.addMessageWithEffect('character', response, tutorInfo.id === 'story');
+            this.addMessageWithEffect('character', response, tutorInfo.id === 'tinta');
         }).catch(err => {
             this.removeLoading();
             this.addMessage('error', `Error: ${err.message}`);
@@ -595,7 +593,7 @@ class GameDevAcademyApp {
         try {
             const response = await this.llm.chat(text, this.currentTutor.prompt_personaje);
             this.removeLoading();
-            this.addMessageWithEffect('character', response, this.currentTutor.id === 'story');
+            this.addMessageWithEffect('character', response, this.currentTutor.id === 'tinta');
             this.triggerHaptic(this.currentTutor.hapticPattern?.pattern);
         } catch (error) {
             this.removeLoading();
