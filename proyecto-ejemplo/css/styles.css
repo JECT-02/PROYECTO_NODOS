@@ -353,6 +353,8 @@ body {
     right: 20px;
     width: 420px;
     height: 520px;
+    max-height: calc(100vh - 100px);
+    max-width: calc(100vw - 40px);
     background: var(--bg-glass);
     backdrop-filter: blur(24px);
     border: 1px solid var(--border-glass);
